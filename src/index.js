@@ -9,16 +9,36 @@ class App extends React.Component {
     Inverno: "fa-snowman",
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      latitude: null,
-      longitude: null,
-      estacao: null,
-      data: null,
-      icone: null,
-      mensagemDeErro: null
-    };
+  //constructor(props) {
+    //super(props);
+    //this.state = {
+      //latitude: null,
+      //longitude: null,
+      //estacao: null,
+      //data: null,
+      //icone: null,
+      //mensagemDeErro: null
+    //};
+    //console.log("construtor")
+  //}
+
+  state = {
+    latitude: null,
+    longitude:null,
+    estacao: null,
+    data: null, 
+    icone: null,
+    
+  }
+
+  componentDidMount() {
+   this.obterLocalizacao()
+  }
+  componentDidUpdate() {
+    console.log('componenteDidUpdate')
+  }
+  componentWillUnmount() {
+    console.log('componenteWillUnmount')
   }
 
   obterEstacao = (data, latitude) => {
@@ -68,7 +88,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state)
+    console.log('render')
     return (
       //responsividade, margem acima
       <div className="container mt-2">
@@ -109,6 +129,13 @@ class App extends React.Component {
                 {/** botão azul (outline 100% de largura e margem acima) */}
                 <button onClick={this.obterLocalizacao}
                   className="btn btn-outline-primary w-100 mt-2">
+                  Qual a minha estação?  
+                </button>
+                <button className="btn btn-danger w-100 mt-2"
+                onClick={() => ReactDOM.unmountComponentAtNode
+                (document.querySelector
+                ('#root'))
+                }>
                   Qual a minha estação?  
                 </button>
               </div>
